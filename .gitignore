@@ -1,0 +1,43 @@
+# Gradle
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Android Studio
+.DS_Store
+local.properties
+/captures
+.externalNativeBuild
+.cxx
+
+# Kotlin
+*.hprof
+
+# Android
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# Kotlin Multiplatform
+**/kotlin-js-store/
+
+# macOS
+.DS_Store
+
+# Local configuration
+.env
+*.local
+
+# Logs
+*.log
