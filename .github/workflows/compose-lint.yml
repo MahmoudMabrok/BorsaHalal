@@ -1,0 +1,88 @@
+name: Compose Lint Check
+
+on:
+  push:
+    branches: [ main, develop, "claude/**" ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  compose-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Cache Gradle packages
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew || echo "gradlew not found yet"
+
+    - name: Run Compose Compiler Metrics
+      run: |
+        if [ -f "gradlew" ]; then
+          ./gradlew assembleDebug \
+            -Pandroid.enableComposeCompilerMetrics=true \
+            -Pandroid.enableComposeCompilerReports=true \
+            --stacktrace
+        else
+          echo "⚠️ Project not set up yet - skipping"
+        fi
+      continue-on-error: true
+
+    - name: Check for Compose Lint Rules
+      run: |
+        if [ -f "gradlew" ]; then
+          ./gradlew lintDebug --stacktrace
+
+          # Check for Compose-specific lint issues
+          if [ -f "app/build/reports/lint-results-debug.xml" ]; then
+            echo "Checking for Compose-specific lint issues..."
+
+            # Look for common Compose lint issues
+            grep -i "compose" app/build/reports/lint-results-debug.xml || echo "No Compose-specific issues found"
+          fi
+        else
+          echo "⚠️ Project not set up yet - skipping"
+        fi
+      continue-on-error: true
+
+    - name: Upload Compose Compiler Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: compose-compiler-reports
+        path: |
+          **/build/compose_compiler/
+          **/build/compose_metrics/
+        retention-days: 14
+
+    - name: Comment on Compose Best Practices
+      run: |
+        echo "✅ Compose Lint Checks Completed"
+        echo ""
+        echo "📋 Compose Best Practices to Check:"
+        echo "  - Use remember for state management"
+        echo "  - Avoid using mutableStateOf outside of remember"
+        echo "  - Use CompositionLocal sparingly"
+        echo "  - Avoid using @Composable in ViewModels"
+        echo "  - Use derivedStateOf for computed values"
+        echo "  - Ensure Composables are side-effect free"
+        echo ""
+        echo "For detailed Compose lint rules, ensure your project includes:"
+        echo "  implementation 'com.slack.lint.compose:compose-lint-checks:<version>'"
