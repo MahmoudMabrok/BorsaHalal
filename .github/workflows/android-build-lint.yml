@@ -2,9 +2,9 @@ name: Android Build and Lint
 
 on:
   push:
-    branches: [ main, develop, "claude/**" ]
+    branches: [ "claude/**" ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
 
 jobs:
   build-and-lint:
