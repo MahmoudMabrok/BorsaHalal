@@ -28,6 +28,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.borsahalal.presentation.ui.components.EditStockDialog
+import com.borsahalal.presentation.ui.components.HoldingsCard
+import com.borsahalal.presentation.viewmodels.HoldingsViewModel
 import com.borsahalal.presentation.viewmodels.StockViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -36,13 +38,17 @@ import org.koin.compose.viewmodel.koinViewModel
 fun StockDetailScreen(
     stockId: Long,
     viewModel: StockViewModel = koinViewModel(),
+    holdingsViewModel: HoldingsViewModel = koinViewModel(),
     onNavigateBack: () -> Unit = {}
 ) {
     val selectedStock by viewModel.selectedStock.collectAsState()
+    val holdings by holdingsViewModel.holdings.collectAsState()
+    val stockSummary by holdingsViewModel.stockSummary.collectAsState()
     var showEditDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(stockId) {
         viewModel.selectStock(stockId)
+        holdingsViewModel.loadStockHoldings(stockId)
     }
 
     Scaffold(
@@ -107,11 +113,26 @@ fun StockDetailScreen(
                             style = MaterialTheme.typography.titleMedium
                         )
 
-                        InfoRow("Total Shares", "0.00")
-                        InfoRow("Average Price", "0.00")
-                        InfoRow("Current Value", "0.00")
-                        InfoRow("Realized Profit", "0.00")
+                        stockSummary?.let { summary ->
+                            InfoRow("Total Shares", String.format("%.2f", summary.totalShares))
+                            InfoRow("Average Price", String.format("%.2f", summary.averagePrice))
+                            InfoRow("Current Value", String.format("%.2f", summary.currentValue))
+                            InfoRow("Realized Profit", String.format("%.2f", summary.realizedProfit))
+                        } ?: run {
+                            InfoRow("Total Shares", "0.00")
+                            InfoRow("Average Price", "0.00")
+                            InfoRow("Current Value", "0.00")
+                            InfoRow("Realized Profit", "0.00")
+                        }
                     }
+                }
+
+                // FIFO Holdings Breakdown
+                if (holdings.isNotEmpty()) {
+                    HoldingsCard(
+                        holdings = holdings,
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
 
                 // Zakat Info
@@ -126,7 +147,12 @@ fun StockDetailScreen(
                         )
 
                         InfoRow("Zakat Percentage", "${stock.zakatPercentage}%")
-                        InfoRow("Estimated Zakat Due", "0.00")
+                        stockSummary?.let { summary ->
+                            val zakatDue = summary.currentValue * (stock.zakatPercentage / 100.0)
+                            InfoRow("Estimated Zakat Due", String.format("%.2f", zakatDue))
+                        } ?: run {
+                            InfoRow("Estimated Zakat Due", "0.00")
+                        }
                     }
                 }
 

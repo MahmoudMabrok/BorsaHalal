@@ -120,6 +120,20 @@ class TransactionViewModel(
         _selectedTransaction.value = null
     }
 
+    fun updateTransaction(transaction: Transaction) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _error.value = null
+            try {
+                transactionRepository.updateTransaction(transaction)
+            } catch (e: Exception) {
+                _error.value = e.message
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
     fun clearError() {
         _error.value = null
     }

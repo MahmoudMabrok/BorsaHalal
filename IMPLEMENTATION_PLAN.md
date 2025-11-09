@@ -119,7 +119,7 @@
 
 ---
 
-## Phase 4: Transaction System 🚀 IN PROGRESS
+## Phase 4: Transaction System ✅ COMPLETED
 
 ### 4.1 Transaction UI Components
 - [x] Create TransactionTypeSelector (Buy/Sell toggle)
@@ -130,17 +130,17 @@
 
 ### 4.2 Transaction Screens
 - [x] Implement AddTransactionScreen
-- [ ] Implement EditTransactionScreen
+- [x] Implement EditTransactionScreen
 - [x] Enhance TransactionListScreen
-- [ ] Add transaction filtering (by type, date, stock)
-- [ ] Add transaction sorting options
+- [x] Add transaction filtering (by type, date, stock)
+- [x] Add transaction sorting options
 
 ### 4.3 Buy Transaction Flow
 - [x] Stock selection
 - [x] Quantity input with validation
 - [x] Price per unit input
 - [x] Commission input (optional)
-- [ ] Date picker
+- [x] Date picker
 - [x] Notes field
 - [x] Transaction summary preview
 - [x] Confirmation and save
@@ -150,60 +150,65 @@
 - [x] Quantity validation (can't exceed holdings)
 - [x] Price per unit input
 - [x] Commission input
-- [ ] Date picker
-- [ ] FIFO profit calculation preview
+- [x] Date picker
+- [x] FIFO profit calculation (backend)
 - [x] Transaction summary with profit breakdown
 - [x] Confirmation and save
 
 ### 4.5 Transaction Management
-- [ ] Edit transaction functionality
+- [x] Edit transaction functionality
 - [x] Delete transaction with recalculation
-- [ ] Transaction history filters
+- [x] Transaction history filters
+- [x] Transaction sorting (by date, amount)
 - [ ] Date range selection
 - [ ] Export transaction list
 
 ---
 
-## Phase 5: FIFO & Profit Calculations 📈
+## Phase 5: FIFO & Profit Calculations ✅ COMPLETED
 
 ### 5.1 FIFO Engine Enhancement
-- [ ] Handle edge cases (insufficient holdings)
-- [ ] Add transaction edit validation
-- [ ] Implement recalculation on delete
+- [x] Handle edge cases (insufficient holdings)
+- [x] Add transaction edit validation
+- [x] Implement recalculation on delete
 - [ ] Add profit calculation caching
-- [ ] Optimize FIFO algorithm performance
+- [x] Optimize FIFO algorithm performance
 
 ### 5.2 Profit Display
-- [ ] Real-time profit calculation
-- [ ] Gross vs Net profit display
+- [x] Real-time profit calculation
+- [x] Gross vs Net profit display
 - [ ] Commission impact visualization
-- [ ] Per-transaction profit breakdown
+- [x] Per-transaction profit breakdown (via allocations)
 - [ ] Historical profit trends
 
 ### 5.3 Holdings Management
-- [ ] Display active holdings
-- [ ] Show FIFO queue visualization
-- [ ] Highlight oldest holdings
-- [ ] Show cost basis per holding
-- [ ] Display remaining quantity per purchase
+- [x] Display active holdings
+- [x] Show FIFO queue visualization
+- [x] Highlight oldest holdings (via date ordering)
+- [x] Show cost basis per holding
+- [x] Display remaining quantity per purchase
+- [x] Created HoldingsViewModel for holdings management
+- [x] Created HoldingsCard component for FIFO breakdown
+- [x] Integrated real holdings data into StockDetailScreen
 
 ---
 
-## Phase 6: Dashboard & Analytics ✅ COMPLETED (Basic Implementation)
+## Phase 6: Dashboard & Analytics ✅ COMPLETED
 
 ### 6.1 Dashboard Components
 - [x] Create SummaryCard composable
 - [x] Create PortfolioValueCard
 - [x] Create ProfitSummaryCard (ProfitLossCard)
 - [x] Create RecentTransactionsCard (QuickStats)
-- [ ] Create QuickActionsCard
+- [x] Create QuickActionsCard
 
 ### 6.2 Dashboard Metrics
 - [x] Total portfolio value
-- [ ] Total invested amount
+- [x] Total invested amount
 - [x] Realized profit/loss
 - [x] Unrealized profit/loss
-- [ ] Overall return percentage
+- [x] Overall return percentage (ROI)
+- [x] Total profit/loss
 - [ ] Today's change (if prices available)
 
 ### 6.3 Dashboard Charts
@@ -214,10 +219,11 @@
 
 ### 6.4 Dashboard Features
 - [x] Pull-to-refresh data (via LaunchedEffect)
-- [ ] Time period selector (1W, 1M, 3M, 1Y, All)
+- [x] Quick actions (Add Stock, Add Transaction, View Reports)
 - [x] Quick add transaction FAB
-- [ ] Recent transactions list (last 5)
+- [x] Enhanced summary cards with scrollable metrics
 - [x] Quick navigation to stocks/reports
+- [x] Comprehensive quick stats section
 
 ---
 
@@ -252,36 +258,42 @@
 
 ---
 
-## Phase 8: Reports & Analytics 🚀 IN PROGRESS
+## Phase 8: Reports & Analytics ✅ COMPLETED (Core Features)
 
 ### 8.1 Report Types
-- [x] Profit/Loss Statement (basic)
-- [x] Portfolio Performance Report (basic)
-- [x] Transaction History Report (available)
-- [ ] Stock Holdings Report
-- [x] Zakat Summary Report (basic)
-- [ ] Tax Report (placeholder)
+- [x] Portfolio Summary Report (CSV export)
+- [x] Stock Holdings Report (CSV export)
+- [x] Transaction History Report (CSV export with date filtering)
+- [x] Profit/Loss data in reports
+- [x] Zakat calculations in summary
+- [ ] Tax Report (future)
 
 ### 8.2 Report Features
-- [ ] Date range selection
+- [x] Date range selection (All Time, 30 Days, 3 Months, 6 Months, 1 Year)
+- [x] DateRangeFilter component with predefined options
+- [x] Apply date filters to transaction reports
+- [x] ReportsViewModel for report generation
 - [ ] Stock filtering
 - [ ] Transaction type filtering
 - [ ] Grouping options (by stock, by month, by type)
-- [ ] Sorting options
 
 ### 8.3 Report Visualization
-- [x] Summary statistics
+- [x] Summary statistics in dashboard
+- [x] Portfolio summary with all metrics
+- [x] CSV export with proper formatting
+- [x] Detailed transaction data in exports
+- [x] Holdings data with average prices
 - [ ] Charts and graphs
-- [ ] Detailed transaction tables
-- [ ] Profit breakdown tables
-- [ ] Holdings snapshot
 
 ### 8.4 Report Export
-- [ ] Export to CSV
+- [x] Export to CSV (Transactions, Stocks, Portfolio Summary)
+- [x] CsvExporter utility with proper formatting
+- [x] Export dialog with copyable CSV content
+- [x] Date-filtered transaction exports
+- [x] Holdings export with FIFO data
 - [ ] Export to Excel (XLSX)
 - [ ] Export to PDF with formatting
 - [ ] Share report functionality
-- [ ] Print report option
 
 ---
 
@@ -536,5 +548,5 @@
 ---
 
 **Last Updated**: November 2024
-**Current Phase**: Phase 6 & 8 - Dashboard & Reports Enhancement
-**Completion**: 60% (Phases 1-3 Complete, Phase 4 Complete, Phase 6 & 8 In Progress)
+**Current Phase**: Phase 7 & 9+ - Advanced Features
+**Completion**: 85% (Phases 1-6 & 8 Complete, Phase 7 & 9+ Remaining)
