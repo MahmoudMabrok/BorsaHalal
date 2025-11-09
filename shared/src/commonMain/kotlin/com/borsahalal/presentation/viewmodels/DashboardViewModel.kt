@@ -12,8 +12,11 @@ import kotlinx.coroutines.launch
 
 data class DashboardState(
     val totalPortfolioValue: Double = 0.0,
+    val totalInvested: Double = 0.0,
     val totalRealizedProfit: Double = 0.0,
     val totalUnrealizedProfit: Double = 0.0,
+    val totalProfit: Double = 0.0,
+    val returnPercentage: Double = 0.0,
     val totalZakatDue: Double = 0.0,
     val stockCount: Int = 0,
     val isLoading: Boolean = false,
@@ -53,11 +56,21 @@ class DashboardViewModel(
                         currentPrices
                     )
                     val stockCount = stockRepository.getStockCount(activeProfile.id)
+                    val totalInvested = reportRepository.getTotalInvested(activeProfile.id)
+                    val totalProfit = realizedProfit + unrealizedProfit
+                    val returnPercentage = if (totalInvested > 0) {
+                        (totalProfit / totalInvested) * 100
+                    } else {
+                        0.0
+                    }
 
                     _state.value = DashboardState(
                         totalPortfolioValue = portfolioValue,
+                        totalInvested = totalInvested,
                         totalRealizedProfit = realizedProfit,
                         totalUnrealizedProfit = unrealizedProfit,
+                        totalProfit = totalProfit,
+                        returnPercentage = returnPercentage,
                         totalZakatDue = zakatDue,
                         stockCount = stockCount,
                         isLoading = false

@@ -9,6 +9,7 @@ import com.borsahalal.data.repository.TransactionRepository
 import com.borsahalal.presentation.viewmodels.DashboardViewModel
 import com.borsahalal.presentation.viewmodels.HoldingsViewModel
 import com.borsahalal.presentation.viewmodels.ProfileViewModel
+import com.borsahalal.presentation.viewmodels.ReportsViewModel
 import com.borsahalal.presentation.viewmodels.StockViewModel
 import com.borsahalal.presentation.viewmodels.TransactionViewModel
 import com.borsahalal.utils.FIFOCalculator
@@ -47,6 +48,7 @@ val viewModelModule = module {
     viewModelOf(::TransactionViewModel)
     viewModelOf(::DashboardViewModel)
     viewModelOf(::HoldingsViewModel)
+    viewModelOf(::ReportsViewModel)
 }
 
 val appModules = listOf(

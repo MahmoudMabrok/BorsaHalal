@@ -16,6 +16,21 @@ class ReportRepository(
     suspend fun getTotalRealizedProfit(profileId: Long): Double =
         saleAllocationDao.getTotalProfitForProfile(profileId) ?: 0.0
 
+    suspend fun getTotalInvested(profileId: Long): Double {
+        val stocks = stockDao.getStocksByProfile(profileId).first()
+        var totalInvested = 0.0
+
+        for (stock in stocks) {
+            val holdings = stockHoldingDao.getActiveHoldings(stock.id)
+            for (holding in holdings) {
+                // Calculate invested amount for remaining quantity
+                totalInvested += holding.remainingQuantity * holding.buyPrice
+            }
+        }
+
+        return totalInvested
+    }
+
     suspend fun getTotalUnrealizedProfit(profileId: Long, currentPrices: Map<Long, Double>): Double {
         val stocks = stockDao.getStocksByProfile(profileId).first()
         var totalUnrealizedProfit = 0.0

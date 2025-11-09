@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.borsahalal.presentation.ui.components.ProfitLossCard
+import com.borsahalal.presentation.ui.components.QuickActionsCard
 import com.borsahalal.presentation.ui.components.SummaryCard
 import com.borsahalal.presentation.viewmodels.DashboardViewModel
 import com.borsahalal.presentation.viewmodels.ProfileViewModel
@@ -110,7 +111,37 @@ fun DashboardScreenEnhanced(
                             modifier = Modifier.fillMaxWidth(0.8f)
                         )
                     }
+
+                    item {
+                        SummaryCard(
+                            title = "Total Invested",
+                            value = String.format("%.2f", state.totalInvested),
+                            subtitle = activeProfile?.currency ?: "USD",
+                            icon = Icons.Default.TrendingUp,
+                            modifier = Modifier.fillMaxWidth(0.8f)
+                        )
+                    }
+
+                    item {
+                        SummaryCard(
+                            title = "Return",
+                            value = String.format("%.1f%%", state.returnPercentage),
+                            subtitle = "ROI",
+                            icon = Icons.Default.ShowChart,
+                            modifier = Modifier.fillMaxWidth(0.8f)
+                        )
+                    }
                 }
+            }
+
+            // Quick Actions
+            item {
+                QuickActionsCard(
+                    onAddStock = { /* Navigate to add stock */ },
+                    onAddTransaction = { /* Navigate to add transaction */ },
+                    onViewReports = { /* Navigate to reports */ },
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
 
             // Profit/Loss Cards
@@ -161,21 +192,39 @@ fun DashboardScreenEnhanced(
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         QuickStatRow(
-                            label = "Total Portfolio Value",
+                            label = "Total Invested",
+                            value = String.format("%.2f %s",
+                                state.totalInvested,
+                                activeProfile?.currency ?: "USD"
+                            )
+                        )
+                        QuickStatRow(
+                            label = "Current Portfolio Value",
                             value = String.format("%.2f %s",
                                 state.totalPortfolioValue,
                                 activeProfile?.currency ?: "USD"
                             )
                         )
                         QuickStatRow(
-                            label = "Total Realized Profit",
+                            label = "Total Profit/Loss",
+                            value = String.format("%.2f %s",
+                                state.totalProfit,
+                                activeProfile?.currency ?: "USD"
+                            )
+                        )
+                        QuickStatRow(
+                            label = "Return (ROI)",
+                            value = String.format("%.2f%%", state.returnPercentage)
+                        )
+                        QuickStatRow(
+                            label = "Realized Profit",
                             value = String.format("%.2f %s",
                                 state.totalRealizedProfit,
                                 activeProfile?.currency ?: "USD"
                             )
                         )
                         QuickStatRow(
-                            label = "Total Unrealized Profit",
+                            label = "Unrealized Profit",
                             value = String.format("%.2f %s",
                                 state.totalUnrealizedProfit,
                                 activeProfile?.currency ?: "USD"
