@@ -189,20 +189,20 @@
 
 ---
 
-## Phase 6: Dashboard & Analytics 📊
+## Phase 6: Dashboard & Analytics ✅ COMPLETED (Basic Implementation)
 
 ### 6.1 Dashboard Components
-- [ ] Create SummaryCard composable
-- [ ] Create PortfolioValueCard
-- [ ] Create ProfitSummaryCard
-- [ ] Create RecentTransactionsCard
+- [x] Create SummaryCard composable
+- [x] Create PortfolioValueCard
+- [x] Create ProfitSummaryCard (ProfitLossCard)
+- [x] Create RecentTransactionsCard (QuickStats)
 - [ ] Create QuickActionsCard
 
 ### 6.2 Dashboard Metrics
-- [ ] Total portfolio value
+- [x] Total portfolio value
 - [ ] Total invested amount
-- [ ] Realized profit/loss
-- [ ] Unrealized profit/loss
+- [x] Realized profit/loss
+- [x] Unrealized profit/loss
 - [ ] Overall return percentage
 - [ ] Today's change (if prices available)
 
@@ -213,11 +213,11 @@
 - [ ] Monthly transaction volume chart
 
 ### 6.4 Dashboard Features
-- [ ] Pull-to-refresh data
+- [x] Pull-to-refresh data (via LaunchedEffect)
 - [ ] Time period selector (1W, 1M, 3M, 1Y, All)
-- [ ] Quick add transaction FAB
+- [x] Quick add transaction FAB
 - [ ] Recent transactions list (last 5)
-- [ ] Quick navigation to stocks/reports
+- [x] Quick navigation to stocks/reports
 
 ---
 
@@ -252,14 +252,14 @@
 
 ---
 
-## Phase 8: Reports & Analytics 📑
+## Phase 8: Reports & Analytics 🚀 IN PROGRESS
 
 ### 8.1 Report Types
-- [ ] Profit/Loss Statement
-- [ ] Portfolio Performance Report
-- [ ] Transaction History Report
+- [x] Profit/Loss Statement (basic)
+- [x] Portfolio Performance Report (basic)
+- [x] Transaction History Report (available)
 - [ ] Stock Holdings Report
-- [ ] Zakat Summary Report
+- [x] Zakat Summary Report (basic)
 - [ ] Tax Report (placeholder)
 
 ### 8.2 Report Features
@@ -270,7 +270,7 @@
 - [ ] Sorting options
 
 ### 8.3 Report Visualization
-- [ ] Summary statistics
+- [x] Summary statistics
 - [ ] Charts and graphs
 - [ ] Detailed transaction tables
 - [ ] Profit breakdown tables
@@ -536,5 +536,5 @@
 ---
 
 **Last Updated**: November 2024
-**Current Phase**: Phase 4 - Transaction System
-**Completion**: 45% (Phases 1-3 Complete, Phase 4 In Progress)
+**Current Phase**: Phase 6 & 8 - Dashboard & Reports Enhancement
+**Completion**: 60% (Phases 1-3 Complete, Phase 4 Complete, Phase 6 & 8 In Progress)
