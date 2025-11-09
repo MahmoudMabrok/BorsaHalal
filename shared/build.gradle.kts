@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.gradle.kotlin.dsl.implementation
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -12,22 +12,21 @@ plugins {
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "shared"
-            isStatic = true
-        }
-    }
+//    listOf(
+//        iosX64(),
+//        iosArm64(),
+//        iosSimulatorArm64()
+//    ).forEach { iosTarget ->
+//        iosTarget.binaries.framework {
+//            baseName = "shared"
+//            isStatic = true
+//        }
+//    }
 
     jvm("desktop")
 
@@ -41,12 +40,12 @@ kotlin {
         }
 
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
+            implementation(libs.compose.runtime)
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.material3)
+            implementation(libs.compose.ui)
+            implementation(libs.compose.components.resources)
+            implementation(libs.compose.components.uiToolingPreview)
 
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
@@ -57,6 +56,9 @@ kotlin {
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+
+            implementation(libs.koin.compose.viewmodel)
+
 
             implementation(libs.room.runtime)
             implementation(libs.sqlite.bundled)
@@ -70,7 +72,7 @@ kotlin {
 
 android {
     namespace = "com.borsahalal"
-    compileSdk = libs.versions.agp.get().split(".")[0].toInt() * 10 + 34
+    compileSdk = 35
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
@@ -108,8 +110,8 @@ room {
 
 dependencies {
     add("kspAndroid", libs.room.compiler)
-    add("kspIosSimulatorArm64", libs.room.compiler)
-    add("kspIosX64", libs.room.compiler)
-    add("kspIosArm64", libs.room.compiler)
+//    add("kspIosSimulatorArm64", libs.room.compiler)
+//    add("kspIosX64", libs.room.compiler)
+//    add("kspIosArm64", libs.room.compiler)
     add("kspDesktop", libs.room.compiler)
 }

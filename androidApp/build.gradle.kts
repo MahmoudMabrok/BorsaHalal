@@ -6,22 +6,18 @@ plugins {
 
 android {
     namespace = "com.borsahalal.android"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.borsahalal"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
     }
 
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 
     packaging {

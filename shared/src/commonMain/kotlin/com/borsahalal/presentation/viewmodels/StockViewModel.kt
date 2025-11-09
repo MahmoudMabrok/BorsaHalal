@@ -53,16 +53,17 @@ class StockViewModel(
             _isLoading.value = true
             _error.value = null
             try {
-                val profile = activeProfile.value
-                    ?: throw IllegalStateException("No active profile")
+                 activeProfile.collect { profile ->
+                    stockRepository.createStock(
+                        profileId = profile?.id ?: 1,
+                        prefix = prefix,
+                        name = name,
+                        zakatPercentage = zakatPercentage,
+                        notes = notes
+                    )
+                }
 
-                stockRepository.createStock(
-                    profileId = profile.id,
-                    prefix = prefix,
-                    name = name,
-                    zakatPercentage = zakatPercentage,
-                    notes = notes
-                )
+
             } catch (e: Exception) {
                 _error.value = e.message
             } finally {
