@@ -38,6 +38,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.borsahalal.data.database.entities.Stock
 import com.borsahalal.data.database.entities.TransactionType
+import com.borsahalal.presentation.ui.components.DatePickerField
 import com.borsahalal.presentation.ui.components.TransactionTypeSelector
 import com.borsahalal.presentation.viewmodels.StockViewModel
 import com.borsahalal.presentation.viewmodels.TransactionViewModel
@@ -59,6 +60,7 @@ fun AddTransactionScreen(
     var quantity by remember { mutableStateOf("") }
     var pricePerUnit by remember { mutableStateOf("") }
     var commission by remember { mutableStateOf("") }
+    var date by remember { mutableStateOf(System.currentTimeMillis()) }
     var notes by remember { mutableStateOf("") }
     var expanded by remember { mutableStateOf(false) }
 
@@ -161,6 +163,14 @@ fun AddTransactionScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
+            // Date Picker
+            DatePickerField(
+                value = date,
+                onValueChange = { date = it },
+                label = "Transaction Date",
+                modifier = Modifier.fillMaxWidth()
+            )
+
             // Notes
             OutlinedTextField(
                 value = notes,
@@ -226,6 +236,7 @@ fun AddTransactionScreen(
                                     quantity = qty,
                                     pricePerUnit = price,
                                     commission = comm,
+                                    date = date,
                                     notes = notes.takeIf { it.isNotBlank() }
                                 )
                             }
@@ -235,6 +246,7 @@ fun AddTransactionScreen(
                                     quantity = qty,
                                     pricePerUnit = price,
                                     commission = comm,
+                                    date = date,
                                     notes = notes.takeIf { it.isNotBlank() }
                                 )
                             }

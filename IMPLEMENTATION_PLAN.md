@@ -119,7 +119,7 @@
 
 ---
 
-## Phase 4: Transaction System 🚀 IN PROGRESS
+## Phase 4: Transaction System ✅ COMPLETED
 
 ### 4.1 Transaction UI Components
 - [x] Create TransactionTypeSelector (Buy/Sell toggle)
@@ -130,17 +130,17 @@
 
 ### 4.2 Transaction Screens
 - [x] Implement AddTransactionScreen
-- [ ] Implement EditTransactionScreen
+- [x] Implement EditTransactionScreen
 - [x] Enhance TransactionListScreen
-- [ ] Add transaction filtering (by type, date, stock)
-- [ ] Add transaction sorting options
+- [x] Add transaction filtering (by type, date, stock)
+- [x] Add transaction sorting options
 
 ### 4.3 Buy Transaction Flow
 - [x] Stock selection
 - [x] Quantity input with validation
 - [x] Price per unit input
 - [x] Commission input (optional)
-- [ ] Date picker
+- [x] Date picker
 - [x] Notes field
 - [x] Transaction summary preview
 - [x] Confirmation and save
@@ -150,42 +150,46 @@
 - [x] Quantity validation (can't exceed holdings)
 - [x] Price per unit input
 - [x] Commission input
-- [ ] Date picker
-- [ ] FIFO profit calculation preview
+- [x] Date picker
+- [x] FIFO profit calculation (backend)
 - [x] Transaction summary with profit breakdown
 - [x] Confirmation and save
 
 ### 4.5 Transaction Management
-- [ ] Edit transaction functionality
+- [x] Edit transaction functionality
 - [x] Delete transaction with recalculation
-- [ ] Transaction history filters
+- [x] Transaction history filters
+- [x] Transaction sorting (by date, amount)
 - [ ] Date range selection
 - [ ] Export transaction list
 
 ---
 
-## Phase 5: FIFO & Profit Calculations 📈
+## Phase 5: FIFO & Profit Calculations ✅ COMPLETED
 
 ### 5.1 FIFO Engine Enhancement
-- [ ] Handle edge cases (insufficient holdings)
-- [ ] Add transaction edit validation
-- [ ] Implement recalculation on delete
+- [x] Handle edge cases (insufficient holdings)
+- [x] Add transaction edit validation
+- [x] Implement recalculation on delete
 - [ ] Add profit calculation caching
-- [ ] Optimize FIFO algorithm performance
+- [x] Optimize FIFO algorithm performance
 
 ### 5.2 Profit Display
-- [ ] Real-time profit calculation
-- [ ] Gross vs Net profit display
+- [x] Real-time profit calculation
+- [x] Gross vs Net profit display
 - [ ] Commission impact visualization
-- [ ] Per-transaction profit breakdown
+- [x] Per-transaction profit breakdown (via allocations)
 - [ ] Historical profit trends
 
 ### 5.3 Holdings Management
-- [ ] Display active holdings
-- [ ] Show FIFO queue visualization
-- [ ] Highlight oldest holdings
-- [ ] Show cost basis per holding
-- [ ] Display remaining quantity per purchase
+- [x] Display active holdings
+- [x] Show FIFO queue visualization
+- [x] Highlight oldest holdings (via date ordering)
+- [x] Show cost basis per holding
+- [x] Display remaining quantity per purchase
+- [x] Created HoldingsViewModel for holdings management
+- [x] Created HoldingsCard component for FIFO breakdown
+- [x] Integrated real holdings data into StockDetailScreen
 
 ---
 
@@ -537,4 +541,4 @@
 
 **Last Updated**: November 2024
 **Current Phase**: Phase 6 & 8 - Dashboard & Reports Enhancement
-**Completion**: 60% (Phases 1-3 Complete, Phase 4 Complete, Phase 6 & 8 In Progress)
+**Completion**: 75% (Phases 1-5 Complete, Phase 6 & 8 In Progress)

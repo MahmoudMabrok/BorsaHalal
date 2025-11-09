@@ -7,6 +7,7 @@ import com.borsahalal.data.repository.ReportRepository
 import com.borsahalal.data.repository.StockRepository
 import com.borsahalal.data.repository.TransactionRepository
 import com.borsahalal.presentation.viewmodels.DashboardViewModel
+import com.borsahalal.presentation.viewmodels.HoldingsViewModel
 import com.borsahalal.presentation.viewmodels.ProfileViewModel
 import com.borsahalal.presentation.viewmodels.StockViewModel
 import com.borsahalal.presentation.viewmodels.TransactionViewModel
@@ -45,6 +46,7 @@ val viewModelModule = module {
     viewModelOf(::StockViewModel)
     viewModelOf(::TransactionViewModel)
     viewModelOf(::DashboardViewModel)
+    viewModelOf(::HoldingsViewModel)
 }
 
 val appModules = listOf(
