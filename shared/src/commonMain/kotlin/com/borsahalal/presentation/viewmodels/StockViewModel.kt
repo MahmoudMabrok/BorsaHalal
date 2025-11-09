@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
@@ -53,11 +54,9 @@ class StockViewModel(
             _isLoading.value = true
             _error.value = null
             try {
-                val profile = activeProfile.value
-                    ?: throw IllegalStateException("No active profile")
-
+                val profile = activeProfile.first()
                 stockRepository.createStock(
-                    profileId = profile.id,
+                    profileId = profile?.id ?: 1,
                     prefix = prefix,
                     name = name,
                     zakatPercentage = zakatPercentage,
